@@ -1,5 +1,6 @@
-package kennen.jpashop;
+package kennen.jpashop.db;
 
+import kennen.jpashop.db.domain.item.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

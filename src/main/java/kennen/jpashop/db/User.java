@@ -1,4 +1,4 @@
-package kennen.jpashop;
+package kennen.jpashop.db;
 
 import lombok.Builder;
 import lombok.Data;
