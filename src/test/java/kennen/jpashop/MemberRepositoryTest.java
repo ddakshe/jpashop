@@ -1,5 +1,7 @@
 package kennen.jpashop;
 
+import kennen.jpashop.db.MemberRepository;
+import kennen.jpashop.db.domain.item.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 public class MemberRepositoryTest {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Test
     @Transactional
@@ -22,14 +25,14 @@ public class MemberRepositoryTest {
     public void testMember() {
         //given
         Member member = new Member();
-        member.setUsername("memberA");
+        member.setName("memberA");
 
         //when
         Long savedId = memberRepository.save(member);
         Member findMember = memberRepository.find(savedId);
 
         Assertions.assertThat(findMember.getId()).isEqualTo(savedId);
-        Assertions.assertThat(member.getUsername()).isEqualTo(findMember.getUsername());
+        Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
         Assertions.assertThat(findMember).isEqualTo(member);
     }
 }
