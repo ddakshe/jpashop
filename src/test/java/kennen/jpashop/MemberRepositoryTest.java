@@ -22,7 +22,6 @@ import static org.junit.Assert.fail;
 @Transactional
 public class MemberRepositoryTest {
 
-
     @Autowired
     private MemberService memberService;
     @Autowired
