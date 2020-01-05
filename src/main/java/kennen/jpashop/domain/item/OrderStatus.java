@@ -1,4 +1,4 @@
-package kennen.jpashop.db.domain.item;
+package kennen.jpashop.domain.item;
 
 public enum OrderStatus {
     ORDER, CANCEL;
