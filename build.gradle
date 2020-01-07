@@ -7,12 +7,15 @@ buildscript {
         // You are telling gradle that this script (Not the project) depends on the
         // following plugin
         classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.2.RELEASE"
+        classpath("org.asciidoctor:asciidoctor-gradle-plugin:1.5.3")
     }
 }
 
 apply plugin: 'java'
 apply plugin: "org.springframework.boot"
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.asciidoctor.convert'
+
 
 group = 'kennen'
 version = '0.0.1-SNAPSHOT'
@@ -29,6 +32,42 @@ repositories {
     jcenter { url "http://jcenter.bintray.com/" }
 }
 
+tasks {
+
+    asciidoctor {
+        dependsOn test
+        sourceDir = file('src/docs/asciidoc')
+        outputDir = file('src/main/resources/static/restdocs')
+
+        options doctype: 'book'
+
+        attributes 'snippets': file('build/snippets'),
+                'source-highlighter': 'coderay',
+                toc                 : 'left',
+                idprefix            : '',
+                idseparator         : '-'
+    }
+
+    asciidoctor.doFirst {
+        println "=====start asciidoctor"
+        delete "${projectDir}/src/main/resources/static/restdocs/html5"
+    }
+
+    asciidoctor.doLast {
+        println "=====finish asciidoctor"
+    }
+
+    bootJar {
+        dependsOn asciidoctor
+    }
+
+    clean.doFirst {
+        delete "${projectDir}/src/main/resources/static/restdocs/html5"
+        println "${projectDir}/src/main/resources/static/restdocs/html5"
+    }
+}
+
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -42,4 +81,6 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testCompile("org.springframework.restdocs:spring-restdocs-mockmvc")
+
 }

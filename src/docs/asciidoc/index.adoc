@@ -1,0 +1,141 @@
+= Spring REST Docs 시작하기
+:toc: left
+
+== GET Home
+ifndef::target[:target: /home]
+=== API Request
+.request
+include::{snippets}{target}/http-request.adoc[]
+
+.curl-request
+include::{snippets}{target}/curl-request.adoc[]
+
+.httpie-request
+include::{snippets}{target}/httpie-request.adoc[]
+
+==== Request parameters
+include::{snippets}{target}/request-parameters.adoc[]
+
+==== Request body
+include::{snippets}{target}/request-body.adoc[]
+
+=== API Response
+.response
+include::{snippets}{target}/http-response.adoc[]
+
+.response-body
+include::{snippets}{target}/response-body.adoc[]
+
+.response-fields
+include::{snippets}{target}/response-fields.adoc[]
+
+
+== GET Greeting
+ifdef::target[:target: /greeting]
+=== API Request
+.request
+include::{snippets}{target}/http-request.adoc[]
+
+.curl-request
+include::{snippets}{target}/curl-request.adoc[]
+
+.httpie-request
+include::{snippets}/{target}/httpie-request.adoc[]
+
+==== Request body
+include::{snippets}{target}/request-body.adoc[]
+
+=== API Response
+.response
+include::{snippets}{target}/http-response.adoc[]
+
+.response-body
+include::{snippets}{target}/response-body.adoc[]
+
+.response-fields
+include::{snippets}{target}/response-fields.adoc[]
+
+
+== GET Greeting1
+ifdef::target[:target: /greeting1]
+=== API Request
+.request
+include::{snippets}{target}/http-request.adoc[]
+
+.curl-request
+include::{snippets}{target}/curl-request.adoc[]
+
+.httpie-request
+include::{snippets}{target}/httpie-request.adoc[]
+
+==== Request body
+include::{snippets}{target}/request-body.adoc[]
+
+=== API Response
+.response
+include::{snippets}{target}/http-response.adoc[]
+
+.response-body
+include::{snippets}{target}/response-body.adoc[]
+
+.response-fields
+include::{snippets}{target}/response-fields.adoc[]
+
+
+== GET Students(Empty)
+ifdef::target[:target: /students/getempty]
+=== API Request
+.request
+include::{snippets}{target}/http-request.adoc[]
+
+.curl-request
+include::{snippets}{target}/curl-request.adoc[]
+
+.httpie-request
+include::{snippets}{target}/httpie-request.adoc[]
+
+==== Request parameters
+include::{snippets}{target}/request-parameters.adoc[]
+
+==== Request body
+include::{snippets}{target}/request-body.adoc[]
+
+
+=== API Response
+.response
+include::{snippets}{target}/http-response.adoc[]
+
+.response-body
+include::{snippets}{target}/response-body.adoc[]
+
+.response-fields
+include::{snippets}{target}/response-fields.adoc[]
+
+
+== GET Students
+ifdef::target[:target: /students/get]
+=== API Request
+.request
+include::{snippets}{target}/http-request.adoc[]
+
+.curl-request
+include::{snippets}{target}/curl-request.adoc[]
+
+.httpie-request
+include::{snippets}{target}/httpie-request.adoc[]
+
+==== Request body
+include::{snippets}{target}/request-body.adoc[]
+
+=== API Response
+.response
+include::{snippets}{target}/http-response.adoc[]
+
+.response-body
+include::{snippets}{target}/response-body.adoc[]
+
+.response-fields
+include::{snippets}{target}/response-fields.adoc[]
+
+보시다시피, 포맷이 간단하고, 항상 같은 결과를 볼 수 있습니다.
+오세요, REST Docs로!
