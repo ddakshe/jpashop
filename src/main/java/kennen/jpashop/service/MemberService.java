@@ -2,6 +2,7 @@ package kennen.jpashop.service;
 
 import kennen.jpashop.domain.item.Member;
 import kennen.jpashop.repository.MemberRepository;
+import kennen.jpashop.repository.MemberRepositorySupport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,8 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
+    private final MemberRepositorySupport memberRepositorySupport;
 
     /**
      * 회원 가입
@@ -38,5 +41,9 @@ public class MemberService {
 
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
+    }
+
+    public List<Member> findAll() {
+        return memberRepositorySupport.findAll2();
     }
 }

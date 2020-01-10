@@ -2,12 +2,17 @@ buildscript {
     repositories {
         maven { url 'http://repo1.maven.org/maven2' }
         jcenter { url "http://jcenter.bintray.com/" }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         // You are telling gradle that this script (Not the project) depends on the
         // following plugin
         classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.2.RELEASE"
         classpath("org.asciidoctor:asciidoctor-gradle-plugin:1.5.3")
+
+        classpath('net.ltgt.gradle:gradle-apt-plugin:0.18')
     }
 }
 
@@ -67,6 +72,10 @@ tasks {
     }
 }
 
+apply plugin: 'net.ltgt.apt'
+apply plugin: 'net.ltgt.apt-idea'
+
+def queryDslVersion = '4.1.3'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -83,4 +92,12 @@ dependencies {
     }
     testCompile("org.springframework.restdocs:spring-restdocs-mockmvc")
 
+    compile("com.querydsl:querydsl-core:${queryDslVersion}")
+    compile("com.querydsl:querydsl-jpa:${queryDslVersion}")
+
+    annotationProcessor (
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa",
+            "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final",
+            "javax.annotation:javax.annotation-api:1.3.2",
+    )
 }
