@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -42,9 +41,10 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/member/list")
-    @ResponseBody
-    public List<Member> members(){
-        return memberService.findAll();
+    @GetMapping("/members")
+    public String members(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }
