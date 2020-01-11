@@ -21,6 +21,7 @@
 * JPA Entity 에는 정말 필요한 경우에만 Setter 를 만든다.
     * 유의미한 method 를 통해 entity 를 변경한다.
 * Controller 에서 Entity 를 생성하지 않는다.
+* Transaction Annotation 확인 철저
 * 트랜잭션이 있는 서비스 계층에 식별자 'id' 와 변경할 데이터를 명확하게 전달한다.
     * 파라미터 or Dto
 * 비슷한 유형의 라이브러리가 존재할 경우 SpringFramework 의 라이브러리를 사용한다.

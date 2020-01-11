@@ -20,8 +20,10 @@ public class MemberRepositorySupport extends QuerydslRepositorySupport {
     }
 
 
-    public List<Member> findAll2(){
-        List<Member> fetch = queryFactory.selectFrom(member).fetch();
+    public List<Member> findAllSearchName(String name){
+        List<Member> fetch = queryFactory.selectFrom(member)
+                                         .where(member.name.like(name))
+                                         .fetch();
         return fetch;
     }
 

@@ -27,13 +27,13 @@ public class OrderRepository {
 
     /*사용 불가*/
     public List<Order> findAll(OrderSearch orderSearch){
-        List<Order> resultList = em.createQuery("select o from Order o join o.member m " +
-                "where o.status = :status " +
-                "and m.name like :name", Order.class)
-                .setParameter("status", orderSearch.getOrderStatus())
-                .setParameter("name", orderSearch.getMemberName())
-                .setFirstResult(100) //시작 지
-                .setMaxResults(1000) //최대 갯수
+        List<Order> resultList = em.createQuery("select o from Order o join o.member m", Order.class)
+//                "where o.status = :status " +
+//                "and m.name like :name", Order.class)
+//                .setParameter("status", orderSearch.getOrderStatus())
+//                .setParameter("name", orderSearch.getMemberName())
+                .setFirstResult(0) //시작 지
+                .setMaxResults(100) //최대 갯수
                 .getResultList();
         return resultList;
     }
