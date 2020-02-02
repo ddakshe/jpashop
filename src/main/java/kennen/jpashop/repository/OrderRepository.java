@@ -65,4 +65,29 @@ public class OrderRepository {
         return orderTypedQuery.getResultList();
     }
 
+    /**
+     * FetchJoin 방식
+     * 장점 : 재사용성 높음, 여러 곳에서 사용 가능
+     * 단점 : Dto 로 변환이 필요함
+     */
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery("select o from Order o" +
+                " join fetch o.member m" +
+                " join fetch o.delivery d", Order.class).getResultList();
+    }
+
+    /**
+     * FetchJoin + Dto
+     * 장점 : 성능 최적화에서 유리 (조~금)
+     * 단점 :
+     *        1. 재사용성 낮음 (Entity 가 아니기 때문에)
+     *        2. 화면에 의존한다. (API 스펙이 변경되면 Repository 를 수정해야 한다.)
+     */
+    public List<OrderSimpleQueryDto> findOrderDtos(){
+        return em.createQuery("select new kennen.jpashop.repository.OrderSimpleQueryDto(" +
+                " o.id, m.name, o.orderDate, o.status, d.address) " +
+                "  from Order o" +
+                " join o.member m" +
+                " join o.delivery d", OrderSimpleQueryDto.class).getResultList();
+    }
 }
