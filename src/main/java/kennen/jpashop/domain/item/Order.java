@@ -24,6 +24,7 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    // @BatchSize(size = 100) /*hibernate Property의 default_batch_fetch_size 를 사용해도 됨*/
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList();
 
