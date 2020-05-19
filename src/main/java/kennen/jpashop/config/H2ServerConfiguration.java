@@ -3,35 +3,31 @@ package kennen.jpashop.config;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.tools.Server;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Slf4j
 @Configuration
-@Profile("tcp")
 public class H2ServerConfiguration {
 
 
-    /**
-     * @return
-     * @throws SQLException
-     * @see org.h2.server.TcpServer
-     */
     @Bean
-    @ConfigurationProperties("spring.datasource.hikari")
-    public HikariDataSource dataSource() throws SQLException {
-        //Server server = adviceRun(9093, "external_db_name", "dbname", FilePath.absolute);
-        Server server = defaultRun(9093);
-        if (server.isRunning(true)) {
-            log.info("server run success");
+    public DataSource dataSource(){
+        try {
+            Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9093").start();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        log.info("h2 server url = {}", server.getURL());
-
-        return new HikariDataSource();
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("1234");
+        dataSource.setJdbcUrl(
+                "jdbc:h2:mem:jpashop;INIT=CREATE SCHEMA IF NOT EXISTS jobflex;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+        return dataSource;
     }
 
     private Server adviceRun(int port, String externalDbName, String dbname, FilePath db_store) throws SQLException {
