@@ -1,7 +1,7 @@
 buildscript {
     repositories {
-        maven { url 'http://repo1.maven.org/maven2' }
-        jcenter { url "http://jcenter.bintray.com/" }
+        maven { url 'https://repo1.maven.org/maven2' }
+        jcenter { url "https://jcenter.bintray.com/" }
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url 'https://dl.google.com/dl/android/maven2' }
 
@@ -39,8 +39,8 @@ configurations {
 }
 
 repositories {
-    maven { url 'http://repo1.maven.org/maven2' }
-    jcenter { url "http://jcenter.bintray.com/" }
+    maven { url 'https://repo1.maven.org/maven2' }
+    jcenter { url "https://jcenter.bintray.com/" }
 }
 
 tasks {
